@@ -7,17 +7,31 @@ This sample project uses Teams Toolkit for Visual Studio Code to simplify the pr
 > [!NOTE]  
 > Sample data was generated using Artificial Intelligence. Any resemblance to real data is purely coincidental.
 
-![Data from custom API displayed in Copilot for Microsoft 365](./assets/connector-copilot-results.png)
+![External content in Microsoft 365 search results](./assets/search-results.png)
+
+## Features
+
+This sample shows how to ingest data from a custom API into your Microsoft 365 tenant.
+
+The sample illustrates the following concepts:
+
+- simplify debugging and provisioning of resources with Teams Toolkit for Visual Studio code
+- create external connection schema
+- support full ingestion of data
+- visualize the external content in Microsoft 365 search results
 
 ## Contributors
 
 - [Sébastien Levert](https://github.com/sebastienlevert)
+- [Gladys Alvarez Jiminez](https://github.com/gladysaj)
+- [Fabian Williams](https://github.com/fabianwilliams)
 - [Waldek Mastykarz](https://github.com/waldekmastykarz)
 
 ## Version History
 
 Version|Date|Comments
 -------|----|--------
+1.1|September 23, 2024|Updated instructions
 1.0|August 27, 2024|Initial release
 
 ## Prerequisites
@@ -29,40 +43,38 @@ Version|Date|Comments
 
 ## Minimal path to awesome - Debug against a real Microsoft 365 tenant
 
-### 1. Project setup
-
 - Clone repo
 - Open repo in VSCode
 - Press <kbd>F5</kbd>, follow the sign in prompts
 - When prompted, click on the link in the console to perform the tenant-wide admin consent
 - Wait for all tasks to complete
-
-### 2. Include data in results (Optional)
-
-> This step is only required if you need to include the data in the search results in Microsoft 365 and in the general Copilot for Microsoft 365 experience. If you only want to use the connector data from a declarative copilot, you can skip this step.
-
 - In the web browser navigate to the [Microsoft 365 admin center](https://admin.microsoft.com/)
 - From the side navigation, open [Settings > Search & Intelligence](https://admin.microsoft.com/?source=applauncher#/MicrosoftSearch)
 - On the page, navigate to the [Data Sources](https://admin.microsoft.com/?source=applauncher#/MicrosoftSearch/connectors) tab
-- A table will display available connections. In the **Required actions** column, select the link to **Include Connector Results** and confirm the prompt
-- Navigate to [Microsoft365.com/chat](https://www.microsoft365.com/chat)
-- Use the following prompt: `What is the acceptable use policy?`
-- A response from Copilot for Microsoft 365 will showcase the data ingested by the Graph connector.
+- A table will display available connections. Locate the **Policy Management** connection. In the **Required actions** column, select the link to **Include Connector Results** and confirm the prompt
+- Navigate to [Microsoft365.com](https://www.microsoft365.com)
+- Using the search box on top, search for: `acceptable use policy`. You should see the following result:
 
-![Empty connector copilot](./assets/connector-copilot-results.png)
+![External content in Microsoft 365 search results](./assets/search-results.png)
 
-## Features
+> [!NOTE]  
+> It can take a moment for the search results to appear. If you don't see the results immediately, wait a few moments and try again.
 
-This sample shows how to ingest data from a custom API into your Microsoft 365 tenant.
+## Using another scenario
 
-The sample illustrates the following concepts:
+The sample provides 3 scenarios to ingest data into Microsoft 365: `IT Policies`, `Financial Services` and `Healthcare`. To switch between scenarios, update the `CONNECTOR_SCENARIO` environment variable in the `.env.*` file to one of the following:
 
-- simplify debugging and provisioning of resources with Teams Toolkit for Visual Studio code
-- create external connection schema
-- support full ingestion of data
-- visualize the external content in the Policy Management declarative copilot
-- visualize the external content in Copilot for Microsoft 365
-- visualize the external content in search results using a custom Adaptive Card
+- `IT Policies`: `CONNECTOR_SCENARIO=it-policies`
+- `Financial Services`: `CONNECTOR_SCENARIO=financial-services`
+- `Healthcare`: `CONNECTOR_SCENARIO=healthcare`
+
+## Providing your own scenario
+
+This sample is extensible and you can provide your own scenario. To do so, you need to:
+
+1. Create a new folder in the `content` folder
+2. Add your `md` files with the content you want to ingest
+3. Update the `CONNECTOR_SCENARIO` environment variable in the `.env.*` file to the name of the folder you created
 
 ## Help
 
